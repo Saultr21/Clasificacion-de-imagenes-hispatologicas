@@ -1,0 +1,463 @@
+/* ===================================
+   1. VARIABLES GLOBALES
+==================================== */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --success-color: #2ecc71;
+    --warning-color: #e74c3c;
+    --other-color: #9b59b6;
+    --light-bg: #f8f9fa;
+}
+
+
+/* ===================================
+   2. ESTILOS BASE
+==================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+    width: 100%;
+}
+
+.app-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+}
+
+/* ===================================
+   3. TARJETAS Y CONTENEDORES
+==================================== */
+.upload-card1 {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 1vh;
+    transition: all 0.3s ease;
+}
+
+.upload-card2 {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 1vh;
+    transition: all 0.3s ease;
+}
+
+.upload-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.upload-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.upload-body {
+    padding: 1rem;
+}
+
+/* Creado por: [Saúl] - liagsad21@gmail.com */
+/* Github: https://github.com/Saultr21 */
+/* ===================================
+   4. SISTEMA DE GRID Y ÁREAS
+==================================== */
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: 
+        "image diagnosis"
+        "chart chart"
+        "explanation explanation"
+        "footer footer";
+    gap: 15px;
+    margin-bottom: 1rem;
+}
+
+.image-area {
+    grid-area: image;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0.5rem;
+    max-height: 200px;
+}
+
+.diagnosis-area {
+    grid-area: diagnosis;
+    display: flex;
+    justify-content: center;
+    max-height: 200px;
+    overflow: auto;
+}
+
+
+.chart-area {
+    grid-area: chart;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Alinea los items verticalmente en el centro */
+    gap: 10px;
+    height: auto;
+    min-height: 250px; 
+    overflow: hidden;
+}
+
+.footer-area {
+    grid-area: footer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 800px;
+}
+
+
+.result-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-column {
+    flex: 0 0 auto;
+    width: 40%;
+    padding-right: 15px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.result-column {
+    flex: 1 1 auto;
+    width: 40%;
+}
+
+/* ===================================
+   5. ELEMENTOS DE FORMULARIO
+==================================== */
+.upload-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+    background-color: #2980b9;
+}
+
+
+input[type="file"]:focus,
+input[type="file"]:active,
+.form-control:focus,
+.form-control:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: var(--accent-color) !important;
+}
+
+input[type="file"]:hover,
+.form-control:hover {
+    border-color: var(--accent-color);
+}
+
+#inputGroupFile02:focus {
+    border-color: var(--accent-color);
+    border-width: 1px;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* ===================================
+   6. COMPONENTES DE DIAGNÓSTICO
+==================================== */
+.diagnosis-card {
+    background: white;
+    border-left: 5px solid;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0;
+}
+
+.benign {
+    border-color: var(--success-color);
+    background-color: rgba(46, 204, 113, 0.05);
+}
+
+.malignant {
+    border-color: var(--warning-color);
+    border-width: 3px;
+    background-color: rgba(231, 76, 60, 0.05);
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+}
+
+.other {
+    border-color: var(--other-color);
+}
+
+.confidence-bar {
+    height: 10px;
+    background: #e9ecef;
+    border-radius: 5px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+}
+
+.confidence-value {
+    height: 100%;
+    border-radius: 5px;
+    background: var(--accent-color);
+}
+
+.confidence-warning {
+    color: #f39c12;
+}
+
+.tissue-category {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 0.35em 0.65em;
+    font-weight: 500;
+}
+
+/* Creado por: [Saúl] - liagsad21@gmail.com */
+/* Github: https://github.com/Saultr21 */
+/* ===================================
+   7. ELEMENTOS GRÁFICOS E IMÁGENES
+==================================== */
+.img-analysis {
+    max-width: 40%;
+    max-height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
+    margin-top: 1.2rem;
+}
+
+.chart-container {
+    flex: 1;
+    min-width: 0;
+    height: 220px;
+    width: 100%;
+    position: relative;
+}
+
+canvas#prediccionChart {
+    max-width: 100%; 
+    max-height: 100%; 
+}
+
+/* ===================================
+   8. MENSAJES Y ALERTAS
+==================================== */
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    display: none;
+}
+
+.low-confidence {
+    background-color: #fcf8e3;
+    border: 1px solid #faebcc;
+    color: #8a6d3b;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* ===================================
+   9. CONTENEDORES ADICIONALES
+==================================== */
+.image-container {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.diagnosis-container {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+/* ===================================
+   10. MEDIA QUERIES
+==================================== */
+@media (max-width: 768px) {
+    .result-row {
+        flex-direction: column;
+    }
+    
+    .image-column, .result-column {
+        width: 100%;
+        padding-right: 0;
+    }
+    
+    .image-column {
+        margin-bottom: 1.5rem;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "image"
+            "diagnosis"
+            "chart"
+            "explanation"
+            "footer";
+    }
+
+    .chart-area {
+        flex-direction: column;
+        height: auto; 
+        min-height: 300px; 
+    }
+    
+    .chart-container {
+        width: 100%;
+        height: 200px; 
+        margin-bottom: 10px;
+    }
+    
+    .confidence-text-container {
+        max-width: 100%;
+        width: 100%;
+        margin-top: 5px;
+        padding: 5px 8px;
+    }
+}
+
+@media (min-width: 992px) {
+    .chart-container {
+        height: 300px; 
+    }
+}
+
+/* Creado por: [Saúl] - liagsad21@gmail.com */
+/* Github: https://github.com/Saultr21 */
+/* ===================================
+   11. ÁREA DE EXPLICACIÓN
+==================================== */
+.explanation-area {
+    grid-area: explanation;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.75rem;
+    background-color: white;
+}
+
+.explanation-title {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-weight: 500;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.explanation-container {
+    background-color: var(--light-bg);
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+}
+
+.explanation-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.explanation-body {
+    padding: 1rem;
+    min-height: 150px;
+    max-height: 400px;
+    overflow-y: auto;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Estilos para las probabilidades por clase */
+.confidence-text-container {
+    background-color: rgba(248, 249, 250, 0.9);
+    border-radius: 4px;
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    align-self: center; /* Asegura que este elemento específico se centre verticalmente */
+    width: auto;
+    max-width: 220px; /* Aumentado el ancho máximo */
+    font-size: 0.7rem; /* Reducir el tamaño de fuente general */
+    overflow: hidden; /* Prevenir desbordamiento */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave para mejor visualización */
+}
+
+.confidence-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.confidence-item {
+    margin: 0;
+    padding: 1px 0;
+    font-size: 0.7rem; 
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Mostrar ... si el texto es muy largo */
+    display: flex; /* Usar flexbox para alinear contenido */
+    justify-content: space-between; /* Separar nombre y porcentaje */
+    gap: 8px; /* Espacio entre el nombre y el porcentaje */
+}
+
+.confidence-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.confidence-percent {
+    font-weight: 600; 
+}
