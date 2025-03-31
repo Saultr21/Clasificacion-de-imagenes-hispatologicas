@@ -14,7 +14,10 @@ La versión del sistema ofrece:
 - **Análisis explicativo** mediante IA que proporciona interpretación detallada de las características visibles en el tejido
 - **Indicadores de confianza** que alertan cuando la predicción no alcanza un umbral adecuado
 
- ![Vista previa de la aplicación](Ejemplo.png)
+<p align="center">
+  <img src="Ejemplo.png" width="300">
+</p>
+
 
 
 ## Instalación y uso
