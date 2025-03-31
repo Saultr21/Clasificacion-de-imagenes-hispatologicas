@@ -35,10 +35,11 @@ Antes de comenzar, asegúrate de tener instalados los siguientes programas:
 Tienes dos opciones para obtener los archivos del proyecto:
 
 ### **Opción 1: Clonar el Repositorio (Recomendado si tienes Git)**
-```bash
-[git clone https://github.com/usuario/proyecto-clasificacion-tejidos.git](https://github.com/Saultr21/Clasificacion-de-imagenes-hispatolgicas.git)
-cd proyecto-clasificacion-tejidos
-```
+1. Abre una terminal o línea de comandos y sitúate en la carpeta donde quieres descargar el proyecto.
+2. Ejecuta el siguiente comando:
+   ```bash
+   git clone https://github.com/Saultr21/Clasificacion-de-imagenes-hispatolgicas.git
+   cd Clasificacion-de-imagenes-hispatolgicas
 
 ### **Opción 2: Descargar el Proyecto como ZIP**
 1. Ve a la página del repositorio en GitHub.
