@@ -86,7 +86,7 @@ El proyecto requiere una clave API de OpenRouter. Para configurarla:
 1. Ve a [OpenRouter](https://openrouter.ai/settings/keys) y genera una clave API.
 2. Descarga el archivo `env` desde el repositorio de GitHub.
 3. Renómbralo a `.env` (añadiendo el punto delante del nombre).
-4. Abre el archivo con un editor de texto y sustituye `TU_CLAVE_API_AQUI` por la clave API que generaste.
+4. Abre el archivo con un editor de texto y sustituye `tu_clave_de_api` por la clave API que generaste.
 
 ## **6. Ejecutar el Servidor**
 Para iniciar la aplicación, ejecuta:
