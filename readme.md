@@ -37,7 +37,7 @@ El modelo pre-entrenado (`lung_cancer_model_todos.pth`) y conjunto de imágenes 
 2. Descargue el modelo pre-entrenado del enlace de Google Drive y colóquelo en la carpeta raíz
 3. Instale las dependencias: `pip install -r requirements.txt`
 4. Cree un archivo .env con su clave API de OpenRouter (para la funcionalidad de explicación)
-5. Ejecute el servidor: `python web_v2.py`
+5. Ejecute el servidor: `python web.py`
 6. Abra su navegador y vaya a `http://127.0.0.1:5000`
 
 ---
