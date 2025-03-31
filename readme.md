@@ -1,4 +1,4 @@
-# Clasificación de Tejidos 
+<h1 align="center">Clasificación de Tejidos</h1>
 
 ## Descripción
 Este proyecto implementa un sistema de clasificación automática de imágenes histopatológicas para la detección y análisis de tejidos pulmonares y colónicos, con enfoque en patrones asociados a cáncer. Utilizando técnicas avanzadas de deep learning, el modelo clasifica las muestras de tejido en categorías específicas, proporcionando información valiosa para asistir en el diagnóstico.
