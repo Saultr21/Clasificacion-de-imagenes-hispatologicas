@@ -15,12 +15,101 @@ La versión del sistema ofrece:
 - **Indicadores de confianza** que alertan cuando la predicción no alcanza un umbral adecuado
 
 ## Instalación y uso
-1. Clone o descargue este repositorio
-2. Descargue el modelo pre-entrenado del enlace de Google Drive y colóquelo en la carpeta raíz [Archivos del proyecto](https://drive.google.com/drive/folders/1JFx5KMTbyQyqT29bFfV8iaYK07eVa-R0?usp=sharing)
-3. Instale las dependencias: `pip install -r requirements.txt`
-4. Cree un archivo .env con su clave API de [OpenRouter](https://openrouter.ai/settings/keys) (Descargar archivo env del github, añadirle un punto delante al fichero y sustituir la clave en su interior)
-5. Ejecute el servidor: `python web.py`
-6. Abra su navegador y vaya a `http://127.0.0.1:5000`
+Antes de comenzar, asegúrate de tener instalados los siguientes programas:
+
+1. **Python 3.8 o superior**  
+   - Verifica si ya está instalado con el siguiente comando:
+     ```bash
+     python --version
+     ```
+   - Si no lo tienes, descárgalo desde [python.org](https://www.python.org/downloads/) e instálalo. **Recuerda marcar la opción “Add Python to PATH”** durante la instalación.
+
+2. **Git (Opcional, pero recomendado para clonar el repositorio)**  
+   - Para verificar si está instalado, ejecuta:
+     ```bash
+     git --version
+     ```
+   - Si no lo tienes, descárgalo desde [git-scm.com](https://git-scm.com/downloads).
+
+## **1. Descargar el Proyecto**
+Tienes dos opciones para obtener los archivos del proyecto:
+
+### **Opción 1: Clonar el Repositorio (Recomendado si tienes Git)**
+```bash
+git clone https://github.com/usuario/proyecto-clasificacion-tejidos.git
+cd proyecto-clasificacion-tejidos
+```
+(Sustituye `https://github.com/usuario/proyecto-clasificacion-tejidos.git` por la URL real del repositorio).
+
+### **Opción 2: Descargar el Proyecto como ZIP**
+1. Ve a la página del repositorio en GitHub.
+2. Haz clic en el botón **"Code"** y luego en **"Download ZIP"**.
+3. Extrae el archivo en una carpeta de tu elección.
+
+## **2. Descargar el Modelo Pre-entrenado**
+El modelo necesario para la clasificación no está en el repositorio. Debes descargarlo manualmente:
+
+1. Accede a [este enlace de Google Drive](https://drive.google.com/drive/folders/1JFx5KMTbyQyqT29bFfV8iaYK07eVa-R0?usp=sharing).
+2. Descarga los archivos del modelo.
+3. Copia los archivos descargados en la carpeta raíz del proyecto.
+
+## **3. Crear un Entorno Virtual (Opcional, pero Recomendado)**
+Para evitar conflictos con otras instalaciones de Python, es recomendable crear un entorno virtual:
+```bash
+python -m venv venv
+```
+Luego, actívalo:
+- En **Windows**:
+  ```bash
+  venv\Scripts\activate
+  ```
+- En **macOS/Linux**:
+  ```bash
+  source venv/bin/activate
+  ```
+
+## **4. Instalar las Dependencias**
+Una vez dentro de la carpeta del proyecto, ejecuta el siguiente comando para instalar todas las bibliotecas necesarias:
+```bash
+pip install -r requirements.txt
+```
+
+## **5. Configurar el Archivo `.env`**
+El proyecto requiere una clave API de OpenRouter. Para configurarla:
+
+1. Ve a [OpenRouter](https://openrouter.ai/settings/keys) y genera una clave API.
+2. Descarga el archivo `.env` desde el repositorio de GitHub.
+3. Renómbralo a `.env` (añadiendo el punto delante del nombre).
+4. Abre el archivo con un editor de texto y sustituye `TU_CLAVE_API_AQUI` por la clave API que generaste.
+
+## **6. Ejecutar el Servidor**
+Para iniciar la aplicación, ejecuta:
+```bash
+python web.py
+```
+
+Si todo está correcto, verás un mensaje indicando que el servidor está corriendo en `http://127.0.0.1:5000`.
+
+## **7. Acceder a la Aplicación**
+Abre un navegador web y accede a la siguiente dirección:
+```
+http://127.0.0.1:5000
+```
+
+Desde ahí podrás interactuar con la aplicación y probar la clasificación de tejidos.
+
+---
+### **Notas Adicionales**
+- Si encuentras errores de dependencia, asegúrate de tener `pip` actualizado ejecutando:
+  ```bash
+  python -m pip install --upgrade pip
+  ```
+- Si tienes problemas con Flask, puedes ejecutarlo de forma explícita con:
+  ```bash
+  flask run
+  ```
+
+---
 
 
 ## Tecnologías utilizadas
