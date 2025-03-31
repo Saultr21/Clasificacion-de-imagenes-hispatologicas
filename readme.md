@@ -36,10 +36,9 @@ Tienes dos opciones para obtener los archivos del proyecto:
 
 ### **Opción 1: Clonar el Repositorio (Recomendado si tienes Git)**
 ```bash
-git clone https://github.com/usuario/proyecto-clasificacion-tejidos.git
+[git clone https://github.com/usuario/proyecto-clasificacion-tejidos.git](https://github.com/Saultr21/Clasificacion-de-imagenes-hispatolgicas.git)
 cd proyecto-clasificacion-tejidos
 ```
-(Sustituye `https://github.com/usuario/proyecto-clasificacion-tejidos.git` por la URL real del repositorio).
 
 ### **Opción 2: Descargar el Proyecto como ZIP**
 1. Ve a la página del repositorio en GitHub.
