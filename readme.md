@@ -18,7 +18,7 @@ La versión del sistema ofrece:
 1. Clone o descargue este repositorio
 2. Descargue el modelo pre-entrenado del enlace de Google Drive y colóquelo en la carpeta raíz [Archivos del proyecto](https://drive.google.com/drive/folders/1JFx5KMTbyQyqT29bFfV8iaYK07eVa-R0?usp=sharing)
 3. Instale las dependencias: `pip install -r requirements.txt`
-4. Cree un archivo .env con su clave API de [OpenRouter](https://openrouter.ai/settings/keys) (para la funcionalidad de explicación)
+4. Cree un archivo .env con su clave API de [OpenRouter](https://openrouter.ai/settings/keys) (Descargar archivo env del github, añadirle un punto delante al fichero y sustituir la clave en su interior)
 5. Ejecute el servidor: `python web.py`
 6. Abra su navegador y vaya a `http://127.0.0.1:5000`
 
