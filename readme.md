@@ -53,7 +53,7 @@ Tienes dos opciones para obtener los archivos del proyecto:
 3. Extrae el archivo en una carpeta de tu elección.
 
 ## **2. Descargar el Modelo Pre-entrenado**
-El modelo necesario para la clasificación no está en el repositorio. Debes descargarlo manualmente:
+El modelo necesario para la clasificación (lung_cancer_model_todos.pth) no está en el repositorio. Debes descargarlo manualmente:
 
 1. Accede a [este enlace de Google Drive](https://drive.google.com/drive/folders/1JFx5KMTbyQyqT29bFfV8iaYK07eVa-R0?usp=sharing).
 2. Descarga los archivos del modelo.
