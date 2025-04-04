@@ -115,7 +115,7 @@ body {
     width: 100%;
 }
 
-/* Estilos para cada imagen */
+
 .original-image, .gradcam-image-container {
     text-align: center;
 }
@@ -505,7 +505,7 @@ canvas#prediccionChart {
     font-weight: 600; 
 }
 
-/* Añadir esta clase para definir el área de gradcam */
+
 .gradcam-area {
     grid-area: gradcam;
     border: 1px solid #ddd;
