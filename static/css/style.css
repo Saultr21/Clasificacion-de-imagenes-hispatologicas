@@ -102,16 +102,31 @@ body {
     border: 1px solid;
     border-radius: 5px;
     padding: 0.5rem;
-    max-height: 200px;
+    max-height: none; 
+    height: auto;
+    overflow: visible;
+}
+
+
+.image-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Estilos para cada imagen */
+.original-image, .gradcam-image-container {
+    text-align: center;
 }
 
 .diagnosis-area {
     grid-area: diagnosis;
     display: flex;
     justify-content: center;
-    max-height: 200px;
     overflow: auto;
 }
+
 
 
 .chart-area {
@@ -122,7 +137,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: row;
-    align-items: center; /* Alinea los items verticalmente en el centro */
+    align-items: center; 
     gap: 10px;
     height: auto;
     min-height: 250px; 
@@ -211,6 +226,7 @@ input[type="file"]:hover,
     width: 100%;
     max-width: 100%;
     margin-top: 0;
+    padding-top: 15%;
 }
 
 .benign {
@@ -264,13 +280,14 @@ input[type="file"]:hover,
    7. ELEMENTOS GRÁFICOS E IMÁGENES
 ==================================== */
 .img-analysis {
-    max-width: 40%;
-    max-height: 100px;
+    max-width: 90%;
+    max-height: 150px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     display: block;
     margin: 0 auto;
     margin-top: 1.2rem;
+    object-fit: contain;
 }
 
 .chart-container {
@@ -284,6 +301,23 @@ input[type="file"]:hover,
 canvas#prediccionChart {
     max-width: 100%; 
     max-height: 100%; 
+}
+
+
+.gradcam-image {
+    max-width: 80%;
+    max-height: 250px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.gradcam-caption {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 8px;
+    text-align: center;
 }
 
 /* ===================================
@@ -344,6 +378,7 @@ canvas#prediccionChart {
         grid-template-areas: 
             "image"
             "diagnosis"
+            "gradcam"
             "chart"
             "explanation"
             "footer";
@@ -366,6 +401,14 @@ canvas#prediccionChart {
         width: 100%;
         margin-top: 5px;
         padding: 5px 8px;
+    }
+
+    .image-comparison {
+        flex-direction: column;
+    }
+    
+    .img-analysis {
+        max-width: 100%;
     }
 }
 
@@ -421,18 +464,18 @@ canvas#prediccionChart {
     font-size: 0.95rem;
 }
 
-/* Estilos para las probabilidades por clase */
+
 .confidence-text-container {
     background-color: rgba(248, 249, 250, 0.9);
     border-radius: 4px;
     padding: 8px 10px;
     border: 1px solid #e0e0e0;
-    align-self: center; /* Asegura que este elemento específico se centre verticalmente */
+    align-self: center; 
     width: auto;
-    max-width: 220px; /* Aumentado el ancho máximo */
-    font-size: 0.7rem; /* Reducir el tamaño de fuente general */
-    overflow: hidden; /* Prevenir desbordamiento */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave para mejor visualización */
+    max-width: 220px; 
+    font-size: 0.7rem; 
+    overflow: hidden; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
 }
 
 .confidence-text {
@@ -447,10 +490,10 @@ canvas#prediccionChart {
     font-family: monospace;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Mostrar ... si el texto es muy largo */
-    display: flex; /* Usar flexbox para alinear contenido */
-    justify-content: space-between; /* Separar nombre y porcentaje */
-    gap: 8px; /* Espacio entre el nombre y el porcentaje */
+    text-overflow: ellipsis; 
+    display: flex; 
+    justify-content: space-between; 
+    gap: 8px; 
 }
 
 .confidence-name {
@@ -460,4 +503,18 @@ canvas#prediccionChart {
 
 .confidence-percent {
     font-weight: 600; 
+}
+
+/* Añadir esta clase para definir el área de gradcam */
+.gradcam-area {
+    grid-area: gradcam;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.75rem;
+    background-color: white;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+    max-height: 320px;
+    overflow: hidden;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>Análisis de Tejidos | IA de Diagnóstico</title>
     <meta charset="utf-8">
@@ -8,6 +9,7 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="container">
         <h1 class="app-title text-center">Sistema de Análisis de Tejidos</h1>
@@ -42,12 +44,21 @@
                 </div>
                 {% else %}
                 <div class="results-grid">
-                    <!-- Área de la imagen -->
-                    <!-- Creado por: [Saúl] - liagsad21@gmail.com -->
-                    <!--  Github: https://github.com/Saultr21 -->
+                    <!-- Área de la imagen con GradCAM integrado -->
                     <div class="image-area">
-                        <img src="{{ imagen_path }}" alt="Muestra de tejido" class="img-analysis">
-                        <p class="text-center text-muted mt-1">{{ imagen_path.split('/')[-1].split('\\')[-1] }}</p>
+                        <div class="image-comparison">
+                            {% if grad_cam_path %}
+                            <div class="gradcam-image-container">
+                                <img src="{{ url_for('static', filename=grad_cam_path) }}" alt="Grad-CAM"
+                                    class="img-analysis gradcam-image">
+                                <p class="text-center text-muted mt-1">
+                                    <small>En la imagen Grad-CAM, los colores cálidos
+                                        indican las zonas con características morfológicas determinantes para la
+                                        clasificación.</small>
+                                </p>
+                            </div>
+                            {% endif %}
+                        </div>
                     </div>
                     <!-- Área del diagnóstico -->
                     <div class="diagnosis-area">
@@ -108,6 +119,23 @@
                         {% endif %}
                     </div>
                 </div>
+                <!-- Área del GRAD-CAM -->
+                <!-- Eliminar esta sección ya que ahora está integrada en image-area -->
+                {% if grad_cam_path %}
+                <!-- Este bloque se debe eliminar o comentar -->
+                <!--
+                <div class="gradcam-area">
+                    <h5 class="text-center mb-3">Análisis de áreas relevantes (Grad-CAM)</h5>
+                    <div class="text-center">
+                        <img src="{{ url_for('static', filename=grad_cam_path) }}" alt="Grad-CAM"
+                            class="img-fluid rounded gradcam-image">
+                    </div>
+                    <p class="gradcam-caption">
+                        <small>El mapa de calor muestra las áreas que más influyen en la clasificación del modelo.</small>
+                    </p>
+                </div>
+                -->
+                {% endif %}
                 <!-- Área del gráfico -->
                 <div class="chart-area">
                     <div class="chart-container">
@@ -118,10 +146,10 @@
                     <div class="confidence-text-container">
                         <div class="confidence-text">
                             {% for item in texto_confianzas %}
-                                <p class="confidence-item">
-                                    <span class="confidence-name">{{ item.nombre }}</span>
-                                    <span class="confidence-percent">{{ item.valor }}</span>
-                                </p>
+                            <p class="confidence-item">
+                                <span class="confidence-name">{{ item.nombre }}</span>
+                                <span class="confidence-percent">{{ item.valor }}</span>
+                            </p>
                             {% endfor %}
                         </div>
                     </div>
@@ -217,4 +245,5 @@
         }
     </script>
 </body>
+
 </html>
