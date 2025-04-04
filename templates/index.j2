@@ -119,24 +119,6 @@
                         {% endif %}
                     </div>
                 </div>
-                <!-- Área del GRAD-CAM -->
-                <!-- Eliminar esta sección ya que ahora está integrada en image-area -->
-                {% if grad_cam_path %}
-                <!-- Este bloque se debe eliminar o comentar -->
-                <!--
-                <div class="gradcam-area">
-                    <h5 class="text-center mb-3">Análisis de áreas relevantes (Grad-CAM)</h5>
-                    <div class="text-center">
-                        <img src="{{ url_for('static', filename=grad_cam_path) }}" alt="Grad-CAM"
-                            class="img-fluid rounded gradcam-image">
-                    </div>
-                    <p class="gradcam-caption">
-                        <small>El mapa de calor muestra las áreas que más influyen en la clasificación del modelo.</small>
-                    </p>
-                </div>
-                -->
-                {% endif %}
-                <!-- Área del gráfico -->
                 <div class="chart-area">
                     <div class="chart-container">
                         <canvas id="prediccionChart"></canvas>
