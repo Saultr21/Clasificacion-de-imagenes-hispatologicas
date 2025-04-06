@@ -15,7 +15,7 @@ La versión del sistema ofrece:
 - **Indicadores de confianza** que alertan cuando la predicción no alcanza un umbral adecuado
 
 <p align="center">
-  <img src="Ejemplo.png" width="700">
+  <img src="Imagen.png" width="700">
 </p>
 
 ## Instalación y uso
