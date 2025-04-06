@@ -17,6 +17,12 @@ import base64
 import markdown  
 import time  
 from dotenv import load_dotenv
+import matplotlib.pyplot as plt
+import io
+import numpy as np
+import cv2  # Necesitarás instalar opencv-python
+import matplotlib
+matplotlib.use('Agg')  # Necesario para usar matplotlib sin GUI
 
 # Cargar variables de entorno
 load_dotenv()
@@ -96,7 +102,106 @@ def predecir(imagen_path):
         print(f"Salida del modelo: {salida}")
         print(f"Probabilidades: {probabilidades}")
         print(f"Predicción (índice): {prediccion.item()}")
-    return prediccion.item(), confianza.item(), probabilidades.tolist()
+    
+    # Generar Grad-CAM
+    grad_cam_path = None
+    try:
+        # Usar el tensor de imagen para Grad-CAM
+        imagen_tensor = imagen_tensor.to(next(modelo.parameters()).device)
+        gradients, activations = get_gradients_and_features(modelo, imagen_tensor, prediccion.item())
+        
+        # Guardar la imagen Grad-CAM con ruta absoluta
+        grad_cam_filename = f"gradcam_{os.path.basename(imagen_path)}"
+        grad_cam_absolute_path = os.path.join(UPLOAD_FOLDER, grad_cam_filename)
+        generate_grad_cam(gradients, activations, imagen_path, grad_cam_absolute_path)
+        
+        # Crear URL relativa para el navegador (sin la barra inicial)
+        grad_cam_path = f"foto/{grad_cam_filename}"  # Quitar el /static/ inicial
+        print(f"Grad-CAM generado en: {grad_cam_absolute_path}")
+        print(f"URL para el navegador (grad_cam_path): {grad_cam_path}")
+    except Exception as e:
+        print(f"Error al generar Grad-CAM: {e}")
+    
+    return prediccion.item(), confianza.item(), probabilidades.tolist(), grad_cam_path
+
+# Funciones para Grad-CAM (añadir después de las definiciones de clase y antes de las rutas)
+def get_gradients_and_features(model, img, predicted_class):
+    activation_output = None
+    gradient_output = None
+
+    # Registrar los hooks en la última capa convolucional
+    final_conv_layer = model.efficientnet.features[-1]  # Última capa convolucional
+    
+    def save_activation_hook(module, input, output):
+        nonlocal activation_output
+        activation_output = output
+    
+    def save_gradient_hook(module, grad_input, grad_output):
+        nonlocal gradient_output
+        gradient_output = grad_output[0]
+    
+    handle_activation = final_conv_layer.register_forward_hook(save_activation_hook)
+    handle_gradient = final_conv_layer.register_backward_hook(save_gradient_hook)
+
+    # Realizar una pasada hacia adelante - ELIMINAR unsqueeze(0)
+    outputs = model(img)  # Eliminar el .unsqueeze(0) aquí
+    
+    # Realizar la retropropagación
+    model.zero_grad()
+    outputs[0, predicted_class].backward()
+
+    # Desregistrar los hooks
+    handle_activation.remove()
+    handle_gradient.remove()
+
+    return gradient_output, activation_output
+
+def generate_grad_cam(gradients, activations, img_path, save_path):
+    # Calcular la importancia de las activaciones por clase
+    weights = torch.mean(gradients, dim=(2, 3), keepdim=True)
+    grad_cam = torch.sum(weights * activations, dim=1, keepdim=True)
+
+    # Aplicar ReLU para visualizar las activaciones positivas
+    grad_cam = F.relu(grad_cam)
+    grad_cam = grad_cam.squeeze().cpu().detach().numpy()
+    grad_cam -= np.min(grad_cam)
+    grad_cam /= np.max(grad_cam)  # Normalizar entre 0 y 1
+
+    # Cargar la imagen original para superponer
+    img = Image.open(img_path).convert('RGB')
+    img = img.resize((224, 224))
+    img_array = np.array(img) / 255.0
+
+    # Redimensionar el mapa de calor al tamaño de la imagen
+    grad_cam_resized = np.uint8(255 * grad_cam)
+    grad_cam_resized = cv2.resize(grad_cam_resized, (img_array.shape[1], img_array.shape[0]))
+    
+    # Crear el mapa de calor
+    heatmap = cv2.applyColorMap(grad_cam_resized, cv2.COLORMAP_JET)
+    heatmap = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB) / 255.0
+    
+    # Superponer el mapa de calor sobre la imagen original
+    superimposed_img = 0.6 * img_array + 0.4 * heatmap
+    superimposed_img = np.clip(superimposed_img, 0, 1)
+    
+    # Guardar la imagen
+    plt.figure(figsize=(10, 5))
+    
+    plt.subplot(1, 2, 1)
+    plt.imshow(img_array)
+    plt.title("Imagen Original")
+    plt.axis('off')
+    
+    plt.subplot(1, 2, 2)
+    plt.imshow(superimposed_img)
+    plt.title("Imagen Grad-CAM")
+    plt.axis('off')
+    
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.close()
+    
+    return save_path
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -105,6 +210,7 @@ def index():
     confianzas = None
     imagen_path = None
     explicacion = None
+    grad_cam_path = None
     
     if request.method == 'POST':
         if 'imagen' not in request.files:
@@ -122,12 +228,12 @@ def index():
             imagen_path = os.path.join(UPLOAD_FOLDER, imagen.filename)
             imagen.save(imagen_path)
             
-            prediccion, confianza, confianzas = predecir(imagen_path)
+            # Ahora la función predecir también devuelve la ruta del Grad-CAM
+            prediccion, confianza, confianzas, grad_cam_path = predecir(imagen_path)
             
             # Manejar el caso donde la predicción no está en el diccionario
             try:
                 prediccion_texto = clases.get(prediccion, "Desconocido")
-                # Ya no generamos la explicación automáticamente
             except Exception as e:
                 print(f"Error al obtener la clase: {e}")
                 prediccion_texto = "Desconocido"
@@ -149,8 +255,9 @@ def index():
                           confianzas=confianzas,
                           texto_confianzas=texto_confianzas,
                           imagen_path=imagen_path,
+                          grad_cam_path=grad_cam_path,
                           explicacion=explicacion,
-                          clases=clases)  # Añadir clases al contexto
+                          clases=clases)
 
 # Añadir esta ruta después de la ruta index y antes de la función generar_explicacion
 @app.route('/generar_explicacion', methods=['POST'])
