@@ -389,7 +389,7 @@ def ask_openrouter_with_base64_es(question, image_path):
     ]
 
     data = json.dumps({
-        "model": "google/gemini-2.5-pro-exp-03-25:free",
+        "model": "google/gemini-2.0-flash-exp:free",
         "messages": messages
     })
 
