@@ -118,7 +118,7 @@ Desde ahí podrás interactuar con la aplicación y probar la clasificación de 
 ## Tecnologías utilizadas
 - **Backend**: Python, Flask, PyTorch
 - **Frontend**: HTML5, CSS3, JavaScript, Bootstrap 5
-- **Modelos**: EfficientNet-B3 (para clasificación de imágenes), Gemini 2.5 Pro (para análisis explicativo)
+- **Modelos**: EfficientNet-B3 (para clasificación de imágenes), Gemini 2.0 Flash (para análisis explicativo)
 - **Visualización**: Chart.js
 
 ## Requisitos
