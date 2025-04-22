@@ -1,15 +1,15 @@
 @echo off
 setlocal enabledelayedexpansion
-title Configuración del Proyecto - Clasificación de Tejidos
-:: Habilitar colores ANSI si no están activados
+title Configuracion del Proyecto - Clasificacion de Tejidos
+:: Habilitar colores ANSI si no estan activados
 reg query HKCU\Console /v VirtualTerminalLevel >nul 2>&1 || (
     reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 /f >nul
 )
 
 :: Paso 0: Verificar si el archivo .env existe
 if not exist .env (
-    echo ❌ ERROR: No se encontró el archivo .env
-    echo Crea uno con la línea:
+    echo ERROR: No se encontro el archivo .env
+    echo Crea uno con la linea:
     echo OPENROUTER_API_KEY=tu_clave_de_api
     pause
     exit /b
