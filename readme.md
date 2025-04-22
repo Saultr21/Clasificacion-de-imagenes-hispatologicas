@@ -50,14 +50,7 @@ Tienes dos opciones para obtener los archivos del proyecto:
 2. Haz clic en el botón **"Code"** y luego en **"Download ZIP"**.
 3. Extrae el archivo en una carpeta de tu elección.
 
-## **2. Descargar el Modelo Pre-entrenado**
-El modelo necesario para la clasificación (lung_cancer_model_todos.pth) no está en el repositorio. Debes descargarlo manualmente:
-
-1. Accede a [este enlace de Google Drive](https://drive.google.com/drive/folders/1JFx5KMTbyQyqT29bFfV8iaYK07eVa-R0?usp=sharing).
-2. Descarga los archivos del modelo.
-3. Copia los archivos descargados en la carpeta raíz del proyecto.
-
-## **3. Crear un Entorno Virtual (Opcional, pero Recomendado)**
+## **2. Crear un Entorno Virtual (Opcional, pero Recomendado)**
 Para evitar conflictos con otras instalaciones de Python, es recomendable crear un entorno virtual:
 ```bash
 python -m venv venv
@@ -72,20 +65,20 @@ Luego, actívalo:
   source venv/bin/activate
   ```
 
-## **4. Instalar las Dependencias**
+## **3. Instalar las Dependencias**
 Una vez dentro de la carpeta del proyecto, ejecuta el siguiente comando para instalar todas las bibliotecas necesarias:
 ```bash
 pip install -r requirements.txt
 ```
 
-## **5. Configurar el Archivo `.env`**
+## **4. Configurar el Archivo `.env`**
 El proyecto requiere una clave API de OpenRouter. Para configurarla:
 
 1. Ve a [OpenRouter](https://openrouter.ai/settings/keys) y genera una clave API.
 2. Descarga el archivo `.env` desde el repositorio de GitHub.
 3. Abre el archivo con un editor de texto y sustituye `tu_clave_de_api` por la clave API que generaste.
 
-## **6. Ejecutar el Servidor**
+## **5. Ejecutar el Servidor**
 Para iniciar la aplicación, ejecuta:
 ```bash
 python web.py
@@ -93,7 +86,7 @@ python web.py
 
 Si todo está correcto, verás un mensaje indicando que el servidor está corriendo en `http://127.0.0.1:5000`.
 
-## **7. Acceder a la Aplicación**
+## **6. Acceder a la Aplicación**
 Abre un navegador web y accede a la siguiente dirección:
 ```
 http://127.0.0.1:5000
@@ -129,7 +122,7 @@ Desde ahí podrás interactuar con la aplicación y probar la clasificación de 
 - Conexión a internet (para las explicaciones mediante API)
 
 ## Archivos adicionales
-El modelo pre-entrenado (`lung_cancer_model_todos.pth`) y conjunto de imágenes de prueba están disponibles en el siguiente enlace:
+Conjunto de imágenes de prueba están disponibles en el siguiente enlace:
 
 [Google Drive - Archivos del proyecto](https://drive.google.com/drive/folders/1JFx5KMTbyQyqT29bFfV8iaYK07eVa-R0?usp=sharing)
 
