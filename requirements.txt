@@ -11,6 +11,7 @@ python-dotenv
 requests
 markdown
 efficientnet-pytorch
+opencv-python
 
 # Bibliotecas principales
 # Flask==2.0.1
