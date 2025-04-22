@@ -20,9 +20,9 @@ from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import io
 import numpy as np
-import cv2  # Necesitarás instalar opencv-python
+import cv2  
 import matplotlib
-matplotlib.use('Agg')  # Necesario para usar matplotlib sin GUI
+matplotlib.use('Agg') 
 
 # Cargar variables de entorno
 load_dotenv()
@@ -124,7 +124,7 @@ def predecir(imagen_path):
     
     return prediccion.item(), confianza.item(), probabilidades.tolist(), grad_cam_path
 
-# Funciones para Grad-CAM (añadir después de las definiciones de clase y antes de las rutas)
+# Funciones para Grad-CAM 
 def get_gradients_and_features(model, img, predicted_class):
     activation_output = None
     gradient_output = None
@@ -143,8 +143,7 @@ def get_gradients_and_features(model, img, predicted_class):
     handle_activation = final_conv_layer.register_forward_hook(save_activation_hook)
     handle_gradient = final_conv_layer.register_backward_hook(save_gradient_hook)
 
-    # Realizar una pasada hacia adelante - ELIMINAR unsqueeze(0)
-    outputs = model(img)  # Eliminar el .unsqueeze(0) aquí
+    outputs = model(img)  
     
     # Realizar la retropropagación
     model.zero_grad()
@@ -228,7 +227,6 @@ def index():
             imagen_path = os.path.join(UPLOAD_FOLDER, imagen.filename)
             imagen.save(imagen_path)
             
-            # Ahora la función predecir también devuelve la ruta del Grad-CAM
             prediccion, confianza, confianzas, grad_cam_path = predecir(imagen_path)
             
             # Manejar el caso donde la predicción no está en el diccionario
@@ -238,7 +236,6 @@ def index():
                 print(f"Error al obtener la clase: {e}")
                 prediccion_texto = "Desconocido"
     
-    # Si tienes confianzas, prepara un texto formateado
     texto_confianzas = None
     if confianzas:
         texto_confianzas = []
@@ -259,7 +256,6 @@ def index():
                           explicacion=explicacion,
                           clases=clases)
 
-# Añadir esta ruta después de la ruta index y antes de la función generar_explicacion
 @app.route('/generar_explicacion', methods=['POST'])
 def obtener_explicacion():
     try:
@@ -318,7 +314,7 @@ def obtener_explicacion():
 #Github: https://github.com/Saultr21 
 def generar_explicacion(clasificacion, confianza, imagen_path):
     """Generar una explicación para la clasificación utilizando OpenRouter"""
-    # Modificar la pregunta para que analice independientemente la imagen
+    # Pregunta para que analice independientemente la imagen
     pregunta = f"""Analiza la siguiente imagen y clasifícala en una de las siguientes categorías:
         - Adenocarcinoma de Colon
         - Colon Benigno
