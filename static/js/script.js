@@ -119,8 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Añadir al final del archivo
-
 // Manejo de consultas a la IA
 document.addEventListener('DOMContentLoaded', function() {
     const sendQueryBtn = document.getElementById('sendQueryBtn');
@@ -182,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // También permitir enviar con Enter
         queryInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 sendQueryBtn.click();
@@ -192,7 +189,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Añadir al final del archivo
 
 // Función para solicitar explicación
 function solicitarExplicacion(clasificacion, confianza, imagen_path) {
