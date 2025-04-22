@@ -1,3 +1,4 @@
+
 <h1 align="center">Clasificación de Tejidos</h1>
 
 ## Descripción
@@ -18,7 +19,8 @@ La versión del sistema ofrece:
   <img src="Imagen.png" width="700">
 </p>
 
-## Instalación y uso
+## ✅ Requisitos previos
+
 Antes de comenzar, asegúrate de tener instalados los siguientes programas:
 
 1. **Python 3.8 o superior**  
@@ -28,34 +30,60 @@ Antes de comenzar, asegúrate de tener instalados los siguientes programas:
      ```
    - Si no lo tienes, descárgalo desde [python.org](https://www.python.org/downloads/) e instálalo. **Recuerda marcar la opción “Add Python to PATH”** durante la instalación.
 
-2. **Git (Opcional, pero recomendado para clonar el repositorio)**  
-   - Para verificar si está instalado, ejecuta:
+2. **Git (opcional, pero recomendado para clonar el repositorio)**  
+   - Para verificar si está instalado:
      ```bash
      git --version
      ```
-   - Si no lo tienes, descárgalo desde [git-scm.com](https://git-scm.com/downloads).
+   - Si no lo tienes, descárgalo desde [git-scm.com](https://git-scm.com/downloads)
 
-## **1. Descargar el Proyecto**
+---
+
+## 📥 1. Descargar el Proyecto
+
 Tienes dos opciones para obtener los archivos del proyecto:
 
-### **Opción 1: Clonar el Repositorio (Recomendado si tienes Git)**
-1. Abre una terminal o línea de comandos y sitúate en la carpeta donde quieres descargar el proyecto.
-2. Ejecuta el siguiente comando:
-   ```bash
-   git clone https://github.com/Saultr21/Clasificacion-de-imagenes-hispatolgicas.git
-   cd Clasificacion-de-imagenes-hispatolgicas
+### Opción 1: Clonar el Repositorio (Recomendado)
+```bash
+git clone https://github.com/Saultr21/Clasificacion-de-imagenes-hispatologicas.git
+cd Clasificacion-de-imagenes-hispatologicas
+```
 
-### **Opción 2: Descargar el Proyecto como ZIP**
-1. Ve a la página del repositorio en GitHub.
-2. Haz clic en el botón **"Code"** y luego en **"Download ZIP"**.
-3. Extrae el archivo en una carpeta de tu elección.
+### Opción 2: Descargar como ZIP
+1. Ve al repositorio en GitHub
+2. Haz clic en **"Code" > "Download ZIP"**
+3. Extrae los archivos en una carpeta
 
-## **2. Crear un Entorno Virtual (Opcional, pero Recomendado)**
-Para evitar conflictos con otras instalaciones de Python, es recomendable crear un entorno virtual:
+---
+
+## 🚀 Instalación y uso rápido (Recomendado)
+
+Una vez tengas el proyecto descargado, simplemente ejecuta el archivo:
+
+```bash
+Ejecutar.bat
+```
+
+Este script automático se encarga de:
+
+- Verificar que el archivo `.env` esté configurado correctamente
+- Crear un entorno virtual
+- Instalar las dependencias necesarias
+- Iniciar el servidor Flask
+
+> ⚠️ Si no tienes configurada la clave `OPENROUTER_API_KEY`, el script te lo indicará y te dará instrucciones para corregirlo.
+
+---
+
+## 🛠️ Instalación manual (en caso de fallo del `.bat`)
+
+Si el script automático no funciona correctamente, puedes seguir estos pasos manualmente:
+
+### **1. Crear un Entorno Virtual**
 ```bash
 python -m venv venv
 ```
-Luego, actívalo:
+Luego actívalo:
 - En **Windows**:
   ```bash
   venv\Scripts\activate
@@ -65,48 +93,26 @@ Luego, actívalo:
   source venv/bin/activate
   ```
 
-## **3. Instalar las Dependencias**
-Una vez dentro de la carpeta del proyecto, ejecuta el siguiente comando para instalar todas las bibliotecas necesarias:
+### **2. Instalar las Dependencias**
 ```bash
 pip install -r requirements.txt
 ```
 
-## **4. Configurar el Archivo `.env`**
-El proyecto requiere una clave API de OpenRouter. Para configurarla:
+### **3. Configurar el archivo `.env`**
+Crea o edita un archivo `.env` con el siguiente contenido:
 
-1. Ve a [OpenRouter](https://openrouter.ai/settings/keys) y genera una clave API.
-2. Descarga el archivo `.env` desde el repositorio de GitHub.
-3. Abre el archivo con un editor de texto y sustituye `tu_clave_de_api` por la clave API que generaste.
+```env
+OPENROUTER_API_KEY=tu_clave_aqui
+```
 
-## **5. Ejecutar el Servidor**
-Para iniciar la aplicación, ejecuta:
+Puedes obtener tu clave en [OpenRouter.ai](https://openrouter.ai/settings/keys)
+
+### **4. Ejecutar el Servidor**
 ```bash
 python web.py
 ```
 
-Si todo está correcto, verás un mensaje indicando que el servidor está corriendo en `http://127.0.0.1:5000`.
-
-## **6. Acceder a la Aplicación**
-Abre un navegador web y accede a la siguiente dirección:
-```
-http://127.0.0.1:5000
-```
-
-Desde ahí podrás interactuar con la aplicación y probar la clasificación de tejidos.
-
 ---
-### **Notas Adicionales**
-- Si encuentras errores de dependencia, asegúrate de tener `pip` actualizado ejecutando:
-  ```bash
-  python -m pip install --upgrade pip
-  ```
-- Si tienes problemas con Flask, puedes ejecutarlo de forma explícita con:
-  ```bash
-  flask run
-  ```
-
----
-
 
 ## Tecnologías utilizadas
 - **Backend**: Python, Flask, PyTorch
